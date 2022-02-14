@@ -15,18 +15,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IssuesController extends ApiController
 {
-    /**
-     * Save change to issue HTML to LMS
-     * 
-     * @Route("/api/issues/{issue}/save", name="save_issue")
-     * @param Issue $issue
-     */
+     // Save change to issue HTML to LMS
+
+     #[Route('/api/issues/{issue}/save', name: 'save_issue')]
+     param Issue $issue;
+
     public function saveIssue(
-        Request $request, 
-        LmsPostService $lmsPost, 
-        PhpAllyService $phpAlly, 
-        UtilityService $util, 
-        Issue $issue) 
+        Request $request,
+        LmsPostService $lmsPost,
+        PhpAllyService $phpAlly,
+        UtilityService $util,
+        Issue $issue)
     {
         $apiResponse = new ApiResponse();
         $user = $this->getUser();
@@ -40,7 +39,7 @@ class IssuesController extends ApiController
 
             // Get updated issue
             $newHtml = $request->getContent();
-            
+
             // Check if new HTML is different from original HTML
             if ($issue->getHtml() === $newHtml) {
                 throw new \Exception('form.error.same_html');
@@ -98,13 +97,12 @@ class IssuesController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-    /**
-     * Mark issue as resolved/reviewed
-     * 
-     * @Route("/api/issues/{issue}/resolve", methods={"POST","GET"}, name="resolve_issue")
-     * @param Issue $issue
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
+     // Mark issue as resolved/reviewed
+
+     #[Route('/api/issues/{issue}/resolve', methods: {"POST","GET"}, name: 'resolve_issue')]
+     param Issue $issue;
+     return \Symfony\Component\HttpFoundation\Response;
+
     public function markAsReviewed(Request $request, LmsPostService $lmsPost, UtilityService $util, Issue $issue)
     {
         $apiResponse = new ApiResponse();
@@ -152,7 +150,7 @@ class IssuesController extends ApiController
                 ]);
             } else {
                 $apiResponse->addLogMessages($unreadMessages);
-            }            
+            }
         } catch (\Exception $e) {
             $apiResponse->addError($e->getMessage());
         }
@@ -160,12 +158,11 @@ class IssuesController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-    /**
-     * Rescan an issue in PhpAlly
-     * 
-     * @Route("/api/issues/{issue}/scan", name="scan_issue")
-     * @param Issue $issue
-     */
+     // Rescan an issue in PhpAlly
+
+     #[Route('/api/issues/{issue}/scan', name: 'scan_issue')]
+     param Issue $issue;
+
     public function scanIssue(Issue $issue, PhpAllyService $phpAlly, UtilityService $util)
     {
         $apiResponse = new ApiResponse();
@@ -199,7 +196,7 @@ class IssuesController extends ApiController
         $unreadMessages = $util->getUnreadMessages();
         if (!empty($unreadMessages)) {
             $apiResponse->addLogMessages($unreadMessages);
-        }         
+        }
 
         return new JsonResponse($apiResponse);
     }

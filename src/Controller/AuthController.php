@@ -25,9 +25,7 @@ class AuthController extends AbstractController
     /** @var LmsApiService $lmsApi */
     private $lmsApi;
 
-    /**
-     * @Route("/authorize", name="authorize")
-     */
+     #[Route('/authorize', name: 'authorize')]
     public function authorize(
         Request $request,
         SessionService $sessionService,
@@ -55,10 +53,8 @@ class AuthController extends AbstractController
         return $this->redirect($oauthUri);
     }
 
-    /**
-     * Previously called oauthresponse.php, this handles the reply from the LMS.
-     * @Route("/authorize/check", name="authorize_check")
-     */
+     // Previously called oauthresponse.php, this handles the reply from the LMS.
+     #[Route('/authorize/check', name: 'authorize_check')]
     public function authorizeCheck(
         Request $request,
         SessionService $sessionService,
@@ -86,7 +82,7 @@ class AuthController extends AbstractController
         if (!isset($newKey['access_token']) || !isset($newKey['refresh_token'])) {
             $util->exitWithMessage('Authentication problem: Missing access token. Please contact support.');
         }
-        
+
         $lmsUser->updateUserToken($user, $newKey);
         $this->session->set('apiKey', $newKey['access_token']);
         $this->session->set('tokenHeader', ["Authorization: Bearer " . $newKey['access_token']]);
@@ -98,11 +94,9 @@ class AuthController extends AbstractController
             ['auth_token' => $this->session->getUuid()]);
     }
 
-    /**
-     * Pass in the institution ID and this will encrypt the developer key.
-     *
-     * @route("/encrypt/key", name="encrypt_developer_key")
-     */
+     // Pass in the institution ID and this will encrypt the developer key.
+
+     #[route('/encrypt/key', name: 'encrypt_developer_key')]
     public function encryptDeveloperKey(Request $request, UtilityService $util)
     {
         $instId = $request->query->get('id');

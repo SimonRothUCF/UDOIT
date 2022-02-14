@@ -14,9 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
 {
-    /**
-     * @Route("/test/issue/{issue}", name="test")
-     */
+     #[Route('/test/issue/{issue}', name: 'test')]
     public function testIssue(HtmlService $html, Issue $issue)
     {
         $contentItem = $issue->getContentItem();
@@ -31,7 +29,7 @@ class TestController extends AbstractController
         echo "<textarea style='width:100%; height:100px'>" . $issue->getPreviewHtml() . "</textarea>";
         echo "<textarea style='width:100%; height:100px'>" . $html->clean($issue->getPreviewHtml()) . "</textarea>";
 
-        
+
 
         exit;
         return $this->render('test/index.html.twig', [
@@ -39,9 +37,7 @@ class TestController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/api/test/content/{item}", name="test")
-     */
+     #[Route('/api/test/content/{item}', name: 'test')]
     public function testContentItem(LmsApiService $lmsApi, ContentItem $item)
     {
         $lms = $lmsApi->getLms();
@@ -49,15 +45,15 @@ class TestController extends AbstractController
 
         print_r($response);
         exit;
-        
+
         return $this->render('test/index.html.twig', [
             'controller_name' => 'TestController',
         ]);
     }
 
-    protected function getHtml() 
+    protected function getHtml()
     {
-        return 
+        return
 <<<STRING
 <html><head><title>Burp Scanner Report</title>
 <meta http-equiv="Content-Security-Policy" content="default-src 'none';img-src 'self' data:;style-src 'unsafe-inline'" />
@@ -397,20 +393,20 @@ div.scan_issue_medium_tentative_rpt{width: 32px; height: 32px; background-image:
 <p>Users can be induced to issue the attacker's crafted request in various ways. For example, the attacker can send a victim a link containing a malicious URL in an email or instant message. They can submit the link to popular web sites that allow content authoring, for example in blog comments. And they can create an innocuous looking web site that causes anyone viewing it to make arbitrary cross-domain requests to the vulnerable application (using either the GET or the POST method).</p>
 <p>The security impact of cross-site scripting vulnerabilities is dependent upon the nature of the vulnerable application, the kinds of data and functionality that it contains, and the other applications that belong to the same domain and organization. If the application is used only to display non-sensitive public content, with no authentication or access control functionality, then a cross-site scripting flaw may be considered low risk. However, if the same application resides on a domain that can access cookies for other more security-critical applications, then the vulnerability could be used to attack those other applications, and so may be considered high risk. Similarly, if the organization that owns the application is a likely target for phishing attacks, then the vulnerability could be leveraged to lend credibility to such attacks, by injecting Trojan functionality into the vulnerable application and exploiting users' trust in the organization in order to capture credentials for other applications that it owns. In many kinds of application, such as those providing online banking functionality, cross-site scripting should always be considered high risk. </p></span>
 <h2>Issue remediation</h2>
-<span class="TEXT"><p>In most situations where user-controllable data is copied into application responses, cross-site scripting 
+<span class="TEXT"><p>In most situations where user-controllable data is copied into application responses, cross-site scripting
  attacks can be prevented using two layers of defenses:</p>
 <ul>
- <li>Input should be validated as strictly as possible on arrival, given the kind of content that 
-it is expected to contain. For example, personal names should consist of alphabetical 
-and a small range of typographical characters, and be relatively short; a year of birth 
-should consist of exactly four numerals; email addresses should match a well-defined 
+ <li>Input should be validated as strictly as possible on arrival, given the kind of content that
+it is expected to contain. For example, personal names should consist of alphabetical
+and a small range of typographical characters, and be relatively short; a year of birth
+should consist of exactly four numerals; email addresses should match a well-defined
 regular expression. Input which fails the validation should be rejected, not sanitized.</li>
-<li>User input should be HTML-encoded at any point where it is copied into 
-application responses. All HTML metacharacters, including < > " ' and =, should be 
+<li>User input should be HTML-encoded at any point where it is copied into
+application responses. All HTML metacharacters, including < > " ' and =, should be
 replaced with the corresponding HTML entities (< > etc).</li></ul>
-<p>In cases where the application's functionality allows users to author content using 
- a restricted subset of HTML tags and attributes (for example, blog comments which 
- allow limited formatting and linking), it is necessary to parse the supplied HTML to 
+<p>In cases where the application's functionality allows users to author content using
+ a restricted subset of HTML tags and attributes (for example, blog comments which
+ allow limited formatting and linking), it is necessary to parse the supplied HTML to
  validate that it does not use any dangerous syntax; this is a non-trivial task.</p></span>
 <h2>References</h2>
 <span class="TEXT"><ul>
