@@ -61,7 +61,7 @@ class AdminController extends ApiController
     }
 
 
-     #[Route('/api/admin/courses/account/{accountId}/term/{termId}', methods: {"GET"}, name: 'admin_courses')]
+    #[Route('/api/admin/courses/account/{accountId}/term/{termId}', methods: ["GET"], name: 'admin_courses')]
     public function getCoursesData(
         $accountId,
         $termId,
@@ -95,7 +95,7 @@ class AdminController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     #[Route('/api/admin/reports/account/{accountId}/term/{termId}', methods: {"GET"}, name: 'admin_reports')]
+     #[Route('/api/admin/reports/account/{accountId}/term/{termId}', methods: ["GET"], name: 'admin_reports')]
     public function getReportsData(
         $accountId,
         $termId,
@@ -237,10 +237,12 @@ class AdminController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     #[Route('/api/admin/courses/{course}/reports/latest', methods: {"GET"}, name: 'admin_latest_report')]
-     param Course $course;
-
-     return JsonResponse;
+     #[Route('/api/admin/courses/{course}/reports/latest', methods: ["GET"], name: 'admin_latest_report')]
+     /**
+      * @param Course $course
+      *
+      * @return JsonResponse
+      */
 
     public function getAdminLatestReport(Course $course, UtilityService $util, LmsApiService $lmsApi)
     {
@@ -298,7 +300,7 @@ class AdminController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     #[Route('/api/admin/accounts', methods: {"GET"}, name: 'admin_update_accounts')]
+     #[Route('/api/admin/accounts', methods: ["GET"], name: 'admin_update_accounts')]
 
      return JsonResponse;
 
