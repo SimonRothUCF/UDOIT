@@ -99,7 +99,7 @@ class IssuesController extends ApiController
 
      // Mark issue as resolved/reviewed
 
-     #[Route('/api/issues/{issue}/resolve', methods: {"POST","GET"}, name: 'resolve_issue')]
+     #[Route('/api/issues/{issue}/resolve', methods: ["POST","GET"], name: 'resolve_issue')]
      param Issue $issue;
      return \Symfony\Component\HttpFoundation\Response;
 

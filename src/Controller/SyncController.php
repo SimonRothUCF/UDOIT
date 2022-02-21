@@ -71,7 +71,7 @@ class SyncController extends ApiController
         return new JsonResponse($response);
     }
 
-     #[Route('/api/sync/content/{contentItem}', name: 'content_sync', methods: {"GET"})]
+     #[Route('/api/sync/content/{contentItem}', name: 'content_sync', methods: ["GET"])]
     public function requestContentSync(ContentItem $contentItem, LmsFetchService $lmsFetch, PhpAllyService $phpAlly)
     {
         $response = new ApiResponse();

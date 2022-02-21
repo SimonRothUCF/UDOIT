@@ -279,9 +279,10 @@ class AdminController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     #[Route('/api/admin/users', methods: {"GET"}, name: 'admin_users')]
-
-     return JsonResponse;
+     #[Route('/api/admin/users', methods: ["GET"], name: 'admin_users')]
+     /**
+      * return JsonResponse;
+      */
 
     public function getUsers(UserRepository $userRepo, ReportRepository $reportRepo)
     {
@@ -301,8 +302,9 @@ class AdminController extends ApiController
     }
 
      #[Route('/api/admin/accounts', methods: ["GET"], name: 'admin_update_accounts')]
-
-     return JsonResponse;
+     /**
+      * return JsonResponse;
+      */
 
     public function getUpdatedAccounts(
         LmsApiService $lmsApi,

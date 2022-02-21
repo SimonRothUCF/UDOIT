@@ -54,7 +54,7 @@ class FileItemsController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     #[Route('/api/files/{file}/post', methods: {"POST"}, name: 'file_post')]
+     #[Route('/api/files/{file}/post', methods: ["POST"], name: 'file_post')]
     public function postFile(FileItem $file, Request $request, UtilityService $util, LmsPostService $lmsPost)
     {
         $apiResponse = new ApiResponse();
