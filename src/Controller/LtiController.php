@@ -26,7 +26,7 @@ class LtiController extends AbstractController
     /** @var \App\Services\LmsApiService $lmsApi */
     private $lmsApi;
 
-     #[Route('/lti/authorize', name: 'lti_authorize')]
+    #[Route('/lti/authorize', name: 'lti_authorize')]
     public function ltiAuthorize(
         Request $request,
         SessionService $sessionService,
@@ -44,7 +44,7 @@ class LtiController extends AbstractController
         return $this->redirect($this->getLtiAuthResponseUrl());
     }
 
-     #[Route('/lti/authorize/check', name: 'lti_authorize_check')]
+    #[Route('/lti/authorize/check', name: 'lti_authorize_check')]
     public function ltiAuthorizeCheck(
         Request $request,
         SessionService $sessionService,
@@ -104,7 +104,7 @@ class LtiController extends AbstractController
             ['auth_token' => $this->session->getUuid()]);
     }
 
-     #[Route('/lti/authorize/dev_lti_authorize', name: 'dev_lti_authorize')]
+    #[Route('/lti/authorize/dev_lti_authorize', name: 'dev_lti_authorize')]
     public function dev_lti_authorize(
       Request $request,
       SessionService $sessionService,
@@ -133,7 +133,7 @@ class LtiController extends AbstractController
       ]);
     }
 
-     #[Route('/lti/config/{lms}', name: 'lti_config')]
+    #[Route('/lti/config/{lms}', name: 'lti_config')]
     public function ltiConfig(Request $request, $lms = 'canvas')
     {
         $baseUrl = $request->server->get('BASE_URL');

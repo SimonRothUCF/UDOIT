@@ -17,8 +17,10 @@ class IssuesController extends ApiController
 {
      // Save change to issue HTML to LMS
 
-     #[Route('/api/issues/{issue}/save', name: 'save_issue')]
-     param Issue $issue;
+    #[Route('/api/issues/{issue}/save', name: 'save_issue')]
+     /**
+      * @param Issue $issue
+      */
 
     public function saveIssue(
         Request $request,
@@ -97,11 +99,14 @@ class IssuesController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     // Mark issue as resolved/reviewed
+    // Mark issue as resolved/reviewed
 
-     #[Route('/api/issues/{issue}/resolve', methods: ["POST","GET"], name: 'resolve_issue')]
-     param Issue $issue;
-     return \Symfony\Component\HttpFoundation\Response;
+    #[Route('/api/issues/{issue}/resolve', methods: ['POST','GET'], name: 'resolve_issue')]
+     /**
+      * @param Issue $issue
+      *
+      * @return \Symfony\Component\HttpFoundation\Response
+      */
 
     public function markAsReviewed(Request $request, LmsPostService $lmsPost, UtilityService $util, Issue $issue)
     {
@@ -158,10 +163,12 @@ class IssuesController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     // Rescan an issue in PhpAlly
+    // Rescan an issue in PhpAlly
 
-     #[Route('/api/issues/{issue}/scan', name: 'scan_issue')]
-     param Issue $issue;
+    #[Route('/api/issues/{issue}/scan', name: 'scan_issue')]
+     /**
+      * @param Issue $issue
+      */
 
     public function scanIssue(Issue $issue, PhpAllyService $phpAlly, UtilityService $util)
     {

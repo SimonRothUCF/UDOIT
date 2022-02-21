@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
 {
-     #[Route('/test/issue/{issue}', name: 'test')]
+    #[Route('/test/issue/{issue}', name: 'test')]
     public function testIssue(HtmlService $html, Issue $issue)
     {
         $contentItem = $issue->getContentItem();
@@ -37,7 +37,7 @@ class TestController extends AbstractController
         ]);
     }
 
-     #[Route('/api/test/content/{item}', name: 'test')]
+    #[Route('/api/test/content/{item}', name: 'test')]
     public function testContentItem(LmsApiService $lmsApi, ContentItem $item)
     {
         $lms = $lmsApi->getLms();

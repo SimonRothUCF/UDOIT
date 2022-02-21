@@ -29,10 +29,14 @@ class ReportsController extends ApiController
     private $request;
     private $util;
 
-     #[Route('/api/courses/{course}/reports', methods: ["GET"], name: 'get_reports')]
-     param Request $request;
-     param $courseId;
-     return JsonResponse;
+    #[Route('/api/courses/{course}/reports', methods: ['GET'], name: 'get_reports')]
+     /**
+      * @param Request $request
+      * 
+      * @param $courseId
+      * 
+      * @return JsonResponse
+      */
 
     public function getAllReports(
         Request $request,
@@ -63,10 +67,12 @@ class ReportsController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     #[Route('/api/courses/{course}/reports/latest', methods: ["GET"], name: 'get_latest_report')]
-     param Course $course;
-
-     return JsonResponse;
+    #[Route('/api/courses/{course}/reports/latest', methods: ['GET'], name: 'get_latest_report')]
+     /**
+      * @param Course $course
+      * 
+      * @return JsonResponse
+      */
 
     public function getLatestReport(Course $course)
     {
@@ -117,9 +123,12 @@ class ReportsController extends ApiController
         return new JsonResponse($apiResponse);
     }
 
-     #[Route('/download/courses/{course}/reports/pdf', methods: ["GET"], name: 'get_report_pdf')]
-     param Course $course;
-     return \Symfony\Component\HttpFoundation\Response;
+    #[Route('/download/courses/{course}/reports/pdf', methods: ['GET'], name: 'get_report_pdf')]
+     /**
+      * @param Course $course
+      * 
+      * @return \Symfony\Component\HttpFoundation\Response
+      */
 
     public function getPdfReport(
         Request $request,
