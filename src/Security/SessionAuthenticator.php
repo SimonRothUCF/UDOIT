@@ -47,12 +47,10 @@ class SessionAuthenticator extends AbstractController
         return is_numeric($credentials);
     }
 
-    /*
-    public function getUser($userId, UserProviderInterface $userProvider)
+    public function getUserOld($userId, UserProviderInterface $userProvider)
     {
         return $this->em->getRepository(User::class)->find($userId);
     }
-    */
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
