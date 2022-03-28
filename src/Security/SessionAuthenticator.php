@@ -13,9 +13,9 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class SessionAuthenticator extends AbstractGuardAuthenticator
+class SessionAuthenticator extends AbstractController
 {
     private $em;
     private $sessionService;
@@ -47,10 +47,12 @@ class SessionAuthenticator extends AbstractGuardAuthenticator
         return is_numeric($credentials);
     }
 
+    /*
     public function getUser($userId, UserProviderInterface $userProvider)
     {
         return $this->em->getRepository(User::class)->find($userId);
     }
+    */
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
