@@ -18,9 +18,9 @@ use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
-use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+//use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
 
-class SessionAuthenticator extends AuthenticationEntryPointInterface
+class AuthenticationEntryPointInterface extends AbstractAuthenticator
 {
     private $em;
     private $sessionService;
