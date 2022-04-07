@@ -41,6 +41,7 @@ class SessionAuthenticator extends AbstractAuthenticator
 
     public function supports(Request $request): ?bool
     {
+        $this->logger->error("supports()");
         return $this->sessionService->hasSession();
     }
 
@@ -54,11 +55,13 @@ class SessionAuthenticator extends AbstractAuthenticator
             throw new CustomUserMessageAuthenticationException('No API token provided');
         }
 
+        $this->logger->error("authenticate()");
         return new SelfValidatingPassport(new UserBadge($apiToken));
     }
 
     public function getCredentials(Request $request)
     {
+        $this->logger->error("getCredentials()");
         $session = $this->sessionService->getSession();
 
         return $session->get('userId');
@@ -66,26 +69,31 @@ class SessionAuthenticator extends AbstractAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user) 
     {
+        $this->logger->error("checkCredentials()");
         return is_numeric($credentials);
     }
 
     public function getUser($userId, UserProviderInterface $userProvider)
     {
+        $this->logger->error("getUser()");
         return $this->em->getRepository(User::class)->find($userId);
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?Response
     {
+        $this->logger->error("onAuthenticationSuccess()");
         return null;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
+        $this->logger->error("onAuthenticationFailure()");
         return null;
     }
 
     public function start(Request $request, AuthenticationException $exception = null) 
     {
+        $this->logger->error("start()");
         $data = [
             // you might translate this message
             'message' => 'Session authentication failed.'
@@ -96,6 +104,6 @@ class SessionAuthenticator extends AbstractAuthenticator
 
     public function supportsRememberMe()
     {
-
+        $this->logger->error("supportsRememberMe()");
     }
 }
