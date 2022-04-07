@@ -18,9 +18,11 @@ use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
-//use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Psr\Log\LoggerInterface;
 
-class AuthenticationEntryPointInterface extends AbstractAuthenticator
+
+class SessionAuthenticator extends AbstractAuthenticator
 {
     private $em;
     private $sessionService;
@@ -28,11 +30,13 @@ class AuthenticationEntryPointInterface extends AbstractAuthenticator
     public function __construct(
         RequestStack $requestStack, 
         EntityManagerInterface $em, 
-        SessionService $sessionService)
+        SessionService $sessionService,
+        LoggerInterface $logger)
     {
         $requestStack->getCurrentRequest();
         $this->em = $em;
         $this->sessionService = $sessionService;
+        $this->logger = $logger;
     }
 
     public function supports(Request $request): ?bool
